@@ -6,6 +6,11 @@ export async function POST() {
   const { text } = await generateText({
     model: openai("gpt-5-nano"),
     prompt: "Write a vegetarian lasagna recipe for 4 people.",
+    experimental_telemetry:{
+      isEnabled: true,
+      recordInputs: true,
+      recordOutputs: true,
+    }
   });
   return Response.json({ text });
 }
