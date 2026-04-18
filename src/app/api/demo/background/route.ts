@@ -1,9 +1,20 @@
 import { inngest } from "@/inngest/client";
 
-export async function POST() {
+const DEFAULT_PROMPT = "Write a vegetarian lasagna recipe for 4 people.";
+
+export async function POST(request: Request) {
+  const body = (await request.json().catch(() => null)) as
+    | { prompt?: unknown }
+    | null;
+
+  const prompt =
+    typeof body?.prompt === "string" && body.prompt.trim()
+      ? body.prompt.trim()
+      : DEFAULT_PROMPT;
+
   await inngest.send({
     name: "demo/generate",
-    data: {},
+    data: { prompt },
   });
-  return Response.json({ status: "started" });
+  return Response.json({ status: "started", prompt });
 }
