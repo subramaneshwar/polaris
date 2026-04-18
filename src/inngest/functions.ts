@@ -33,7 +33,21 @@ export const demoGenerate = inngest.createFunction(
       return await generateText({
         model: openai("gpt-4o-2024-11-20"),
         prompt: finalPrompt,
+        experimental_telemetry: {
+          isEnabled: true,
+          recordInputs: true,
+          recordOutputs: true,
+        },
       });
+    });
+  },
+);
+
+export const demoError = inngest.createFunction(
+  { id: "demo-error", triggers: [{ event: "demo/error" }] },
+  async ({ step }) => {
+    await step.run("fail", async () => {
+      throw new Error("Inngest Error: Background job failed!");
     });
   },
 );
