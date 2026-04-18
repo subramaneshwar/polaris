@@ -1,6 +1,6 @@
 // src/inngest/functions.ts
+import { google } from "@ai-sdk/google";
 import { inngest } from "./client";
-import { getDefaultTextModel } from "@/lib/ai-model";
 import { generateText } from "ai";
 
 
@@ -10,7 +10,7 @@ export const demoGenerate = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("generate-text", async () => {
       return await generateText({
-        model: getDefaultTextModel(),
+        model: google("gemini-2.5-flash"),
         prompt: "Write a vegetarian lasagna recipe for 4 people.",
       });
     });

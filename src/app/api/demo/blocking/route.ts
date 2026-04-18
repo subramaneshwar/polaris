@@ -1,10 +1,10 @@
 import { generateText } from "ai";
-import { getDefaultTextModel } from "@/lib/ai-model";
+import { google } from "@ai-sdk/google";
 
 
 export async function POST() {
   const { text } = await generateText({
-    model: getDefaultTextModel(),
+    model: google("gemini-2.5-flash"),
     prompt: "Write a vegetarian lasagna recipe for 4 people.",
   });
   return Response.json({ text });
