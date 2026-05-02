@@ -5,7 +5,12 @@ import Link from "next/link";
 import { Doc } from "../../../../../convex/_generated/dataModel";
 import { formatDistanceToNow } from "date-fns";
 import { FaGithub } from "react-icons/fa";
-import { AlertCircleIcon, ArrowRightIcon, GlobeIcon, Loader2Icon } from "lucide-react";
+import {
+  AlertCircleIcon,
+  ArrowRightIcon,
+  GlobeIcon,
+  Loader2Icon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ProjectsListProps {
